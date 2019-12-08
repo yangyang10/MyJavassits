@@ -1,0 +1,2 @@
+include ':app', ':plugin', ':eventbus'
+rootProject.name='MyJavassist'
