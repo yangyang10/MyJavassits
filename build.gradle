@@ -17,6 +17,8 @@ buildscript {
 
         //本地依赖
         classpath 'com.timel.bus:timelBus:1.0.0'
+       // classpath 'com.novoda:bintray-release:0.7.0'
+
     }
 }
 

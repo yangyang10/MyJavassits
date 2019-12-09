@@ -21,10 +21,12 @@ public class MyInject{
                 try{
                     pool.removeClassPath(it)
                 }catch(Exception e){
-                    project.logger.error(e.getMessage())
+                    project.logger.error("removeClassPath="+e.getMessage())
                 }
             }
+            classPathList.clear()
         }
+
     }
 
     /**
@@ -90,13 +92,23 @@ public class MyInject{
                         //getDeclaredMethods获取自己申明的方法，c.getMethods()会把所有父类的方法都加上
                         for(CtMethod ctmethod : c.getDeclaredMethods()){
                             String methodName = Utils.getSimpleName(ctmethod)
-                            if(BusHelper.ON_CREATE.contains(methodName)) busInfo.setOnCreateMethod(ctmethod)
-                            if(BusHelper.ON_DESTROY.contains(methodName)) busInfo.setOnDestroyMethod(ctmethod)
+                            project.logger.error("methodName ="+methodName)
+
+                            if(BusHelper.ON_CREATE.contains(methodName))
+                                busInfo.setOnCreateMethod(ctmethod)
+
+                            if(BusHelper.ON_DESTROY.contains(methodName))
+                                busInfo.setOnDestroyMethod(ctmethod)
+
                             for(Annotation annotation : ctmethod.getAnnotations()){
+                                project.logger.error("canonicalName ="+annotation.annotationType().canonicalName)
+
                                 if(annotation.annotationType().canonicalName.equals(BusHelper.TimelBusRegisterAnnotation))
                                     busInfo.setBusRegisterMethod(ctmethod)
+
                                 if(annotation.annotationType().canonicalName.equals(BusHelper.TimelBusUnRegisterAnnotation))
                                     busInfo.setBusUnRegisterMethod(ctmethod)
+
                                 if(annotation.annotationType().canonicalName.equals(BusHelper.TimelBusAnnotation)){
                                     project.logger.error " method:" +c.getName() +"_" + ctmethod.getName()
                                     busInfo.methods.add(ctmethod)
@@ -120,6 +132,7 @@ public class MyInject{
                     }
                 }
         }
+
     }
 
 }

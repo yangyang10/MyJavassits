@@ -12,23 +12,22 @@ import java.lang.annotation.Target;
  * 创建时间：2019-12-08 13:10
  **/
 
-
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.METHOD)
 public @interface Bus {
-
     int DEFAULT = -1;
     int UI = 0;
     int BG = 1;
 
     /**
      * 事件订阅的线程
+     *
      * @return
      */
     int thread() default DEFAULT;
 
     /**
-     * 事件ID
+     * 事件id
      *
      * @return
      */

@@ -30,7 +30,7 @@ public class BusHelper{
 
     static def Pre_OnDestroy = "    \n" +
             "      protected void onDestroy() {\n" +
-            "           super.onDestroy()'\n"
+            "           super.onDestroy();'\n"
 
 
     /**
@@ -39,6 +39,8 @@ public class BusHelper{
      * @param path
      */
     public static void initBus(BusInfo busInfo,String path){
+
+        busInfo.project.logger.error "is comming"
 
         if(busInfo.clazz.isFrozen()) busInfo.clazz.defrost() //解冻
         if(busInfo.busRegisterMethod != null){//有被busRegister注解的方法
