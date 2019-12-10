@@ -7,6 +7,7 @@ import android.util.Log;
 
 import com.timel.bus.TimelBus;
 import com.timel.bus.annotation.Bus;
+import com.timel.bus.annotation.LogTime;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -25,8 +26,15 @@ public class MainActivity extends AppCompatActivity {
         TimelBus.getInstance().onStickyEvent(EventTags.TEST);
     }
 
+    @LogTime
     @Bus(value = EventTags.TEST)
     public void test() {
         Log.d("MainActivity", "test");
+    }
+
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
     }
 }

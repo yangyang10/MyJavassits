@@ -59,6 +59,7 @@ public class MyInject{
         ClassPool pool = ClassPool.getDefault()
         pool.appendClassPath(path)
         // project.android.bootClasspath 加入android.jar 否则找不到Android相关的所有类
+        project.logger.error "android info path = "+project.android.bootClasspath[0].toString()
         pool.appendClassPath(project.android.bootClasspath[0].toString())
         Utils.importBaseClass(pool)
         File dir = new File(path)

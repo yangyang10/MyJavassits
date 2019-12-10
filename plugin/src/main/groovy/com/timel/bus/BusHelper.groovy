@@ -4,8 +4,8 @@ import javassist.CtClass
 import javassist.CtMethod
 import javassist.CtNewMethod
 import javassist.bytecode.AnnotationsAttribute
+import javassist.bytecode.MethodInfo
 import javassist.bytecode.annotation.IntegerMemberValue
-import sun.management.MethodInfo
 
 import java.lang.annotation.Annotation
 
@@ -30,7 +30,7 @@ public class BusHelper{
 
     static def Pre_OnDestroy = "    \n" +
             "      protected void onDestroy() {\n" +
-            "           super.onDestroy();'\n"
+            "           super.onDestroy();\n"
 
 
     /**
@@ -57,7 +57,7 @@ public class BusHelper{
         }else{
             //有OnCreateMethod 直接插入新代码
             busInfo.project.logger.error "OnCreateMethod not null"
-            busInfo.OnCreateMethod.insertAfter(getRegisterEventMethodStr(busInfo))
+            busInfo.onCreateMethod.insertAfter(getRegisterEventMethodStr(busInfo))
         }
 
         if(busInfo.busUnRegisterMethod != null){//有被busUnRegister注解方法

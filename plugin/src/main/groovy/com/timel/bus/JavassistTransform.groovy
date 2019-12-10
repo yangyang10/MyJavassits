@@ -95,7 +95,7 @@ public class JavassistTransform extends Transform{
                 //遍历jar包
                 try{
                     input.jarInputs.each{
-
+                        project.logger.error("jar path ="+it.file.getAbsolutePath())
                         MyInject.injectJar(it.file.getAbsolutePath(),"com",project)
                         //重命名输出文件
                         String outputFileName = it.name.replace(".jar","")+"-"+it.file.path.hashCode()
