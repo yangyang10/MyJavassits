@@ -80,6 +80,7 @@ public class MyInject{
                     boolean isMyPackage = index != -1
                     if(isMyPackage){
                         String className = Utils.getClassName(index,filePath)
+                        project.logger.error("className =="+className)
                         CtClass c = pool.getCtClass(className)
                         if(c.isFrozen()) c.defrost()
                         BusInfo busInfo = new BusInfo()
